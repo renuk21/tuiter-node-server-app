@@ -4,6 +4,7 @@ import HelloController from "./controllers/hello-controller.js";
 import UserController from "./controllers/users/users-controller.js";
 import TuitsController from "./controllers/tuits/tuits-controller.js";
 import mongoose from "mongoose";
+
 const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb://localhost:27017/tuiter'
 const options = {
     useNewUrlParser: true,
@@ -15,7 +16,14 @@ const options = {
     family: 4
 
 }
-mongoose.connect(CONNECTION_STRING, options);
+mongoose.connect(CONNECTION_STRING, options).then(() => {
+    console.log('connected to database')
+    console.log(CONNECTION_STRING)
+})
+    .catch((err) => {
+        console.log(err)
+        console.log(CONNECTION_STRING)
+    })
 const app = express();
 app.use(cors());
 app.use(express.json());
