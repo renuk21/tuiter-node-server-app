@@ -18,11 +18,9 @@ const options = {
 }
 mongoose.connect(CONNECTION_STRING, options).then(() => {
     console.log('connected to database')
-    console.log(CONNECTION_STRING)
 })
     .catch((err) => {
         console.log(err)
-        console.log(CONNECTION_STRING)
     })
 const app = express();
 app.use(cors());
